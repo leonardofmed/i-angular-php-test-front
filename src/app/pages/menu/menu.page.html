@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Menu Inicial</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4">
+        <ion-button class="menu-btn" (click)="goTo('clientes')">Clientes</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4">
+        <ion-button class="menu-btn" (click)="goTo('produtos')">Produtos</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4">
+        <ion-button class="menu-btn" (click)="goTo('vendas')">Vendas</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
