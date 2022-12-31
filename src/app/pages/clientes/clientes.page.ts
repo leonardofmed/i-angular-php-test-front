@@ -19,6 +19,7 @@ export class ClientesPage implements OnInit {
                 bairro: 'bairro x',
 				complemento: 'complemento x',
 				cidade: 'cidade x',
+				numero: 132
 			},
 			email: 'teste@teste.com',
 			nascimento: '10111995',
@@ -34,6 +35,7 @@ export class ClientesPage implements OnInit {
                 bairro: 'bairro x',
 				complemento: 'complemento x',
 				cidade: 'cidade 2',
+				numero: 156
 			},
 			email: 'teste@teste.com',
 			nascimento: '10111995',
@@ -60,7 +62,7 @@ export class ClientesPage implements OnInit {
 
 }
 
-interface Cliente {
+export interface Cliente {
 	uid: string
 	nome: string
 	cpf: string
@@ -76,4 +78,5 @@ interface Endereco {
 	bairro: string
 	complemento: string
 	cidade: string
+	numero: number
 }

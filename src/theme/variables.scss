@@ -244,3 +244,18 @@
 	-o-user-select: none;
 	cursor: pointer;
 }
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.width-icon {
+	font-size: 200%;
+  color: var(--ion-color-medium);
+  cursor: pointer;
+}
+.text-xx {
+	font-size: xx-small;
+  color: var(--ion-color-medium);
+  cursor: pointer;
+}
