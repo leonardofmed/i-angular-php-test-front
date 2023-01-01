@@ -22,12 +22,13 @@ Projeto em Ionic + Angular para o teste técnico da WK Technology
     - Total da venda
 
 # Versões
-// TODO
+- **Angular:** 15
+- **Ionic:** 6
 
 ## Observações
 - O projeto foi desenvovido de forma integral, sem utilização de templates prontos.
 
 ## Referências e ferramentas
-https://generated.photos/
-https://ionic.io/ionicons
-https://www.freepik.com/
+- https://generated.photos/
+- https://ionic.io/ionicons
+- https://www.freepik.com/

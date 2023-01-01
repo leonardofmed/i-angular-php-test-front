@@ -1,8 +1,8 @@
 {
   "name": "front",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Leonardo Augusto Floriani Medeiros",
+  "homepage": "https://github.com/leonardofmed",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
