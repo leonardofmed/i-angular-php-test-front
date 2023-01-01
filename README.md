@@ -21,6 +21,9 @@ Projeto em Ionic + Angular para o teste técnico da WK Technology
     - Identificação dos itens da venda (Lista de Produtos)
     - Total da venda
 
+# Versões
+// TODO
+
 ## Observações
 - O projeto foi desenvovido de forma integral, sem utilização de templates prontos.
 

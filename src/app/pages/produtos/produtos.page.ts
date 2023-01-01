@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { ProdutoPage } from 'src/app/modals/produto/produto.page';
 
 @Component({
@@ -24,7 +24,8 @@ export class ProdutosPage implements OnInit {
 	]
 
 	constructor(
-		private modalController: ModalController
+		private modalController: ModalController,
+		private navController: NavController
 	) { }
 
 	ngOnInit() {
@@ -57,8 +58,22 @@ export class ProdutosPage implements OnInit {
 	}
 
 	// TODO
-	public cart(product: Produto) {
+	public buy(product: Produto) {
 
+	}
+
+	public add() {
+		return this.modalController.create({
+			component: ProdutoPage,
+			componentProps: {
+                product: null
+			}
+
+		}).then(modal => modal.present());
+	}
+
+	public goBack(): void {
+		return this.navController.back();
 	}
 
 }

@@ -18,9 +18,23 @@
             <p>{{moneyMask(product.valor)}}</p>
           </ion-label>
           <ion-icon slot="end" name="settings-outline" color="primary" class="pointer" (click)="openEditModal(product)"></ion-icon>
-          <ion-icon slot="end" name="cart-outline" color="success" class="pointer" (click)="cart(product)"></ion-icon>
+          <ion-icon slot="end" name="cart-outline" color="success" class="pointer" (click)="buy(product)"></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <!-- Add -->
+  <ion-fab class="add-fab-btn">
+    <ion-fab-button (click)="add()">
+      <ion-icon color="light" name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Back -->
+  <ion-fab class="back-fab-btn">
+    <ion-fab-button (click)="goBack()">
+      <ion-icon color="light" name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
