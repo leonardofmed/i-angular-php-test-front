@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Cliente } from 'src/app/pages/clientes/clientes.page';
 
 @Component({
@@ -9,7 +10,9 @@ import { Cliente } from 'src/app/pages/clientes/clientes.page';
 export class ClientePage implements OnInit {
 	@Input() cliente: Cliente;
 
-	constructor() {
+	constructor(
+		private modalController: ModalController
+	) {
 		// Mock cliente structure to prevent initializer compiler error
 		this.cliente = {
 			uid: '',
@@ -33,7 +36,7 @@ export class ClientePage implements OnInit {
 	}
 
 	public save() {
-
+		return this.modalController.dismiss();
 	}
 
 }
