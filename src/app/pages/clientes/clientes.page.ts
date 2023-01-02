@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { ClientePage } from 'src/app/modals/cliente/cliente.page';
 
 @Component({
@@ -44,13 +44,14 @@ export class ClientesPage implements OnInit {
 	]
 
 	constructor(
-		private modalController: ModalController
+		private modalController: ModalController,
+		private navController: NavController
 	) { }
 
 	ngOnInit() {
 	}
 
-	public openEditModal(cliente: Cliente) {
+	public openEditModal(cliente: Cliente): Promise<void> {
 		return this.modalController.create({
 			component: ClientePage,
 			componentProps: {
@@ -58,6 +59,20 @@ export class ClientesPage implements OnInit {
 			}
 
 		}).then(modal => modal.present());
+	}
+
+	public add(): Promise<void> {
+		return this.modalController.create({
+			component: ClientePage,
+			componentProps: {
+                cliente: null
+			}
+
+		}).then(modal => modal.present());
+	}
+
+	public goBack(): void {
+		return this.navController.back();
 	}
 
 }

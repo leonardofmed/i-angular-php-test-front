@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>vendas</ion-title>
+    <ion-title class="ion-text-center">Vendas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let venda of vendas">
+      <!-- I'm adding an offset here so we can have a little space between screen sides -->
+      <!-- TODO ADD SIZE AND OFFSET TO REFLECT DIFFERENT BREAKPOINTS -->
+      <ion-col size="12">
+        
+        <ion-card>
+          <ion-card-header>
+            <ion-row>
+              <ion-col size="6">
+                <ion-card-subtitle>PEDIDO REALIZADO</ion-card-subtitle>
+                <ion-card-title>{{formatDate(venda.data)}}</ion-card-title>
+              </ion-col>
+              <ion-col size="6" class="ion-text-end">
+                <ion-card-subtitle>ID DO PEDIDO</ion-card-subtitle>
+                <ion-card-title>{{venda.uid}}</ion-card-title>
+              </ion-col>
+            </ion-row>            
+          </ion-card-header>
 
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let product of venda.products">
+                <ion-thumbnail slot="start">
+                  <img alt="Imagem do produto" [src]="product.image" />
+                </ion-thumbnail>
+                <ion-label>{{product.nome}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

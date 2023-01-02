@@ -254,8 +254,32 @@
   color: var(--ion-color-medium);
   cursor: pointer;
 }
+.width-icon-danger {
+	font-size: 200%;
+  color: var(--ion-color-danger);
+  cursor: pointer;
+}
 .text-xx {
 	font-size: xx-small;
   color: var(--ion-color-medium);
   cursor: pointer;
+}
+.text-xx-danger {
+	font-size: xx-small;
+  color: var(--ion-color-danger);
+  cursor: pointer;
+}
+.default-item {
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+}
+.add-fab-btn {
+	position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.back-fab-btn {
+	position: absolute;
+    left: 10px;
+    bottom: 10px;
 }

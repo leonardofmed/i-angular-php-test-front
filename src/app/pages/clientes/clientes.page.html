@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeSm="12" sizeMd="6" sizeLg="4" sizeXl="3" *ngFor="let cliente of clientes">
-        <ion-item lines="none" class="cliente-item">
+        <ion-item lines="none" class="default-item">
           <ion-thumbnail slot="start">
             <!-- <ion-icon class="ion-text-center" name="map-outline"></ion-icon> -->
             <ion-img [src]="cliente.image" alt="User's profile picture"></ion-img>
@@ -22,4 +22,19 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <!-- Add -->
+  <ion-fab class="add-fab-btn">
+    <ion-fab-button (click)="add()">
+      <ion-icon color="light" name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Back -->
+  <ion-fab class="back-fab-btn">
+    <ion-fab-button (click)="goBack()">
+      <ion-icon color="light" name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
