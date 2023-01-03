@@ -23,10 +23,10 @@ export class ApiService {
 		private storage: StorageService
 	) {}
 
-	private apiLocation: string = 'https:/wktest.epizy.com/api/';
+	private apiLocation: string = 'http://wktest.epizy.com/api/';
 
 	/** Clients */
-	public getClients(clientUid?: string): Observable<Object> {
+	public getClients(clientUid?: string): Observable<any> {
 		let url: string = clientUid ? this.apiLocation + 'clients/' + clientUid : this.apiLocation + 'clients';
 		return this.http.get(url, this.options);
 	}

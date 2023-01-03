@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Cliente } from 'src/app/pages/clientes/clientes.page';
+import { ApiService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class ClientePage implements OnInit {
 
 	constructor(
 		private modalController: ModalController,
-		private general: GeneralService
+		private general: GeneralService,
+		private api: ApiService
 	) {
 		// Mock cliente structure to prevent initializer compiler error
 		this.cliente = {
@@ -58,7 +60,10 @@ export class ClientePage implements OnInit {
 	}
 
 	public save() {
-		return this.modalController.dismiss();
+		return this.api.upsertClient(this.cliente).subscribe((message: Object) => {
+			console.log("messageObject", message);
+			return this.modalController.dismiss();
+		});
 	}
 
 	public remove() {

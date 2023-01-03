@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
@@ -20,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 			name: 'wk_db',
 			driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
 		}),
+    HttpClientModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
