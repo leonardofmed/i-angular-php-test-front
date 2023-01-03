@@ -31,7 +31,7 @@ export class ApiService {
 		return this.http.get(url, this.options);
 	}
 
-	public upsertClient(client: Cliente): Observable<Object> {
+	public upsertClient(client: Cliente): Observable<any> {
 		let url: string = this.apiLocation + 'clients';
 		return this.http.post(url, JSON.stringify(client));
 	}

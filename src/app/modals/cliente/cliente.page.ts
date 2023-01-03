@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Cliente } from 'src/app/pages/clientes/clientes.page';
 import { ApiService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
 	selector: 'app-cliente',
@@ -16,7 +17,8 @@ export class ClientePage implements OnInit {
 	constructor(
 		private modalController: ModalController,
 		private general: GeneralService,
-		private api: ApiService
+		private api: ApiService,
+		private ui: UiService
 	) {
 		// Mock cliente structure to prevent initializer compiler error
 		this.cliente = {
@@ -60,8 +62,8 @@ export class ClientePage implements OnInit {
 	}
 
 	public save() {
-		return this.api.upsertClient(this.cliente).subscribe((message: Object) => {
-			console.log("messageObject", message);
+		return this.api.upsertClient(this.cliente).subscribe((response: {status: boolean, message: string}) => {
+			this.ui.presentToast(response.message);
 			return this.modalController.dismiss();
 		});
 	}
