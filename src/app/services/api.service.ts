@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { StorageService } from './storage.service';
 import { Observable } from 'rxjs';
 import { Cliente } from '../pages/clientes/clientes.page';
+import { Produto } from '../pages/produtos/produtos.page';
 
 @Injectable({
 	providedIn: 'root'
@@ -42,5 +43,23 @@ export class ApiService {
 	}
 
 	/** Products */
+	public getProducts(productUid?: string): Observable<any> {
+		let url: string = productUid ? this.apiLocation + 'products/' + productUid : this.apiLocation + 'products';
+		return this.http.get(url, this.options);
+	}
+
+	public upsertProduct(product: Produto): Observable<any> {
+		let url: string = this.apiLocation + 'products';
+		return this.http.post(url, JSON.stringify(product));
+	}
+
+	public removeProduct(product: Produto): Observable<Object> {
+		let url: string = this.apiLocation + 'products';
+		return this.http.delete(url, {body: JSON.stringify(product)});
+	}
+
 	/** Sales */
+	public getSales(): Observable<any> {
+		return this.http.get(this.apiLocation + 'sales', this.options);
+	}
 }

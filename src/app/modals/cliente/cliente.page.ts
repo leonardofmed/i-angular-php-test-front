@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { Cliente } from 'src/app/pages/clientes/clientes.page';
 import { ApiService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
@@ -11,7 +12,7 @@ import { UiService } from 'src/app/services/ui.service';
 	styleUrls: ['./cliente.page.scss'],
 })
 export class ClientePage implements OnInit {
-	@Input() cliente: Cliente;
+	@Input() cliente!: Cliente;
 	public newClient: boolean = false;
 
 	constructor(
@@ -19,25 +20,7 @@ export class ClientePage implements OnInit {
 		private general: GeneralService,
 		private api: ApiService,
 		private ui: UiService
-	) {
-		// Mock cliente structure to prevent initializer compiler error
-		this.cliente = {
-			uid: '',
-			nome: '',
-			cpf: '',
-			endereco: {
-				cep: '',
-				logradouro: '',
-                bairro: '',
-				complemento: '',
-				cidade: '',
-				numero: 0
-			},
-			email: '',
-			nascimento: '',
-			image: ''
-		}
-	}
+	) {}
 
 	ngOnInit() {
 		if (!this.cliente) {
@@ -61,14 +44,14 @@ export class ClientePage implements OnInit {
 		}
 	}
 
-	public save() {
+	public save(): Subscription {
 		return this.api.upsertClient(this.cliente).subscribe((response: {status: boolean, message: string}) => {
 			this.ui.presentToast(response.message);
 			return this.modalController.dismiss();
 		});
 	}
 
-	public remove() {
+	public remove(): Promise<boolean> {
 		return this.modalController.dismiss();
 	}
 

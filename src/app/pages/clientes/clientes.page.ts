@@ -20,6 +20,8 @@ export class ClientesPage implements OnInit {
 	ngOnInit() {
 		this.getClients();
 	}
+	
+	//ionViewWillEnter() {}
 
 	public openEditModal(cliente: Cliente): Promise<void> {
 		return this.modalController.create({
@@ -49,7 +51,7 @@ export class ClientesPage implements OnInit {
 		return this.api.getClients().subscribe((clients: Cliente[]) => {
 			console.log("clients", clients); // TODO REMOVE
 			this.clientes = clients;
-		}).unsubscribe();
+		});
 	}
 
 }
