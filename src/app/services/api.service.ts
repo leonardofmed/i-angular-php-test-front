@@ -39,8 +39,8 @@ export class ApiService {
 	}
 
 	public removeClient(client: Cliente): Observable<any> {
-		let url: string = this.apiLocation + 'clients';
-		return this.http.delete(url, {body: JSON.stringify(client)});
+		let url: string = this.apiLocation + 'clients/' + client.uid;
+		return this.http.delete(url);
 	}
 
 	/** Products */

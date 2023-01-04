@@ -30,7 +30,12 @@ export class ClientesPage implements OnInit {
 				cliente: cliente
 			}
 
-		}).then(modal => modal.present());
+		}).then(modal => {			
+			modal.onDidDismiss().then(data => {
+				if (data.data === 'reload') this.getClients();
+			});
+			modal.present()
+		});
 	}
 
 	public add(): Promise<void> {

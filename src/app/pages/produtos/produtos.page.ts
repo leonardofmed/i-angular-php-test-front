@@ -27,14 +27,19 @@ export class ProdutosPage implements OnInit {
 		this.getProducts();
 	}
 
-	public openEditModal(product: Produto) {
+	public openEditModal(product?: Produto) {
 		return this.modalController.create({
 			component: ProdutoPage,
 			componentProps: {
-				product: product
+				product: product ? product : null
 			}
 
-		}).then(modal => modal.present());
+		}).then(modal => {
+			modal.onDidDismiss().then(data => {
+				if (data.data === 'reload') this.getProducts();
+			});
+			modal.present()
+		});
 	}
 
 	/**
@@ -91,16 +96,6 @@ export class ProdutosPage implements OnInit {
 		return this.api.addSale(newSale).subscribe((response: { status: boolean, message: string }) => {
 			this.ui.presentToast(response.message);
 		});
-	}
-
-	public add(): Promise<void> {
-		return this.modalController.create({
-			component: ProdutoPage,
-			componentProps: {
-				product: null
-			}
-
-		}).then(modal => modal.present());
 	}
 
 	public goBack(): void {

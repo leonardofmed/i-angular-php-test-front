@@ -47,14 +47,14 @@ export class ClientePage implements OnInit {
 	public save(): Subscription {
 		return this.api.upsertClient(this.cliente).subscribe((response: { status: boolean, message: string }) => {
 			this.ui.presentToast(response.message);
-			return this.modalController.dismiss();
+			return this.modalController.dismiss("reload");
 		});
 	}
 
 	public remove() {
 		return this.api.removeClient(this.cliente).subscribe((response: { status: boolean, message: string }) => {			
 			this.ui.presentToast(response.message);
-			return this.modalController.dismiss();
+			return this.modalController.dismiss("reload");
 		});
 	}
 

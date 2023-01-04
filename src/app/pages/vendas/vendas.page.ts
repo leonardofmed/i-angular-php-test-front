@@ -33,10 +33,14 @@ export class VendasPage implements OnInit {
 	}
 }
 
+/**
+ * @param user Here we use the full User interface/obj, in DB we sabe only the user UID related to this sale.
+ * @param products: Same case of user. Here we use the full array of products, in DB we can save only the array of UIDs.
+ */
 export interface Venda {
 	uid: string
 	data: string
-	user: Cliente
-	products: Produto[]
+	user: Cliente // Here we use 
+	products: Produto[] // TODO this should be an array of products UIDs
 	total: string
 }
