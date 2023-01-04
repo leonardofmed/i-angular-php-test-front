@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { Produto } from 'src/app/pages/produtos/produtos.page';
+import { ApiService } from 'src/app/services/api.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
 	selector: 'app-produto',
@@ -9,21 +12,15 @@ import { GeneralService } from 'src/app/services/general.service';
 	styleUrls: ['./produto.page.scss'],
 })
 export class ProdutoPage implements OnInit {
-	@Input() product: Produto;
-	private newProduct: boolean = false;
+	@Input() product!: Produto;
+	public newProduct: boolean = false;
 
 	constructor(
 		private modalController: ModalController,
-		private general: GeneralService
-	) {
-		// Mock product structure to prevent initializer compiler error
-		this.product = {
-			uid: '',
-			nome: '',
-			valor: '',
-			image: '',
-		}
-	}
+		private general: GeneralService,
+		private api: ApiService,
+		private ui: UiService
+	) { }
 
 	ngOnInit() {
 		if (!this.product) {
@@ -37,12 +34,17 @@ export class ProdutoPage implements OnInit {
 		}
 	}
 
-	public save(): Promise<boolean> {
-		// TODO IF NEW PRODUCT THEN ADD, ELSE UPDATE
-		return this.modalController.dismiss();
+	public save(): Subscription {
+		return this.api.upsertProduct(this.product).subscribe((response: { status: boolean, message: string }) => {
+			this.ui.presentToast(response.message);
+			return this.modalController.dismiss();
+		});
 	}
 
-	public remove(): Promise<boolean> {
-		return this.modalController.dismiss();
+	public remove() {
+		return this.api.removeProduct(this.product).subscribe((response: { status: boolean, message: string }) => {
+			this.ui.presentToast(response.message);
+			return this.modalController.dismiss();
+		});
 	}
 }

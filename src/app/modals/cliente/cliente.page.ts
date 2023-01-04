@@ -20,7 +20,7 @@ export class ClientePage implements OnInit {
 		private general: GeneralService,
 		private api: ApiService,
 		private ui: UiService
-	) {}
+	) { }
 
 	ngOnInit() {
 		if (!this.cliente) {
@@ -45,14 +45,17 @@ export class ClientePage implements OnInit {
 	}
 
 	public save(): Subscription {
-		return this.api.upsertClient(this.cliente).subscribe((response: {status: boolean, message: string}) => {
+		return this.api.upsertClient(this.cliente).subscribe((response: { status: boolean, message: string }) => {
 			this.ui.presentToast(response.message);
 			return this.modalController.dismiss();
 		});
 	}
 
-	public remove(): Promise<boolean> {
-		return this.modalController.dismiss();
+	public remove() {
+		return this.api.removeClient(this.cliente).subscribe((response: { status: boolean, message: string }) => {			
+			this.ui.presentToast(response.message);
+			return this.modalController.dismiss();
+		});
 	}
 
 }

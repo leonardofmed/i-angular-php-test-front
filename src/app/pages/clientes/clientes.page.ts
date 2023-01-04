@@ -20,14 +20,14 @@ export class ClientesPage implements OnInit {
 	ngOnInit() {
 		this.getClients();
 	}
-	
+
 	//ionViewWillEnter() {}
 
 	public openEditModal(cliente: Cliente): Promise<void> {
 		return this.modalController.create({
 			component: ClientePage,
 			componentProps: {
-                cliente: cliente
+				cliente: cliente
 			}
 
 		}).then(modal => modal.present());
@@ -37,7 +37,7 @@ export class ClientesPage implements OnInit {
 		return this.modalController.create({
 			component: ClientePage,
 			componentProps: {
-                cliente: null
+				cliente: null
 			}
 
 		}).then(modal => modal.present());
@@ -47,7 +47,7 @@ export class ClientesPage implements OnInit {
 		return this.navController.back();
 	}
 
-	private getClients() {		
+	private getClients() {
 		return this.api.getClients().subscribe((clients: Cliente[]) => {
 			console.log("clients", clients); // TODO REMOVE
 			this.clientes = clients;

@@ -4,6 +4,7 @@ import { StorageService } from './storage.service';
 import { Observable } from 'rxjs';
 import { Cliente } from '../pages/clientes/clientes.page';
 import { Produto } from '../pages/produtos/produtos.page';
+import { Venda } from '../pages/vendas/vendas.page';
 
 @Injectable({
 	providedIn: 'root'
@@ -37,7 +38,7 @@ export class ApiService {
 		return this.http.post(url, JSON.stringify(client));
 	}
 
-	public removeClient(client: Cliente): Observable<Object> {
+	public removeClient(client: Cliente): Observable<any> {
 		let url: string = this.apiLocation + 'clients';
 		return this.http.delete(url, {body: JSON.stringify(client)});
 	}
@@ -53,12 +54,16 @@ export class ApiService {
 		return this.http.post(url, JSON.stringify(product));
 	}
 
-	public removeProduct(product: Produto): Observable<Object> {
+	public removeProduct(product: Produto): Observable<any> {
 		let url: string = this.apiLocation + 'products';
 		return this.http.delete(url, {body: JSON.stringify(product)});
 	}
 
 	/** Sales */
+	public addSale(sale: Venda): Observable<any> {
+		return this.http.post(this.apiLocation + 'sales', JSON.stringify(sale));
+	}
+
 	public getSales(): Observable<any> {
 		return this.http.get(this.apiLocation + 'sales', this.options);
 	}
