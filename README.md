@@ -10,7 +10,7 @@
 *Mais detalhes em [Web](https://ionicframework.com/docs/cli/commands/build) e [Capacitor](https://ionicframework.com/docs/cli/commands/capacitor-build)*
 
 ## Apresentação e observações
-Esse projeto foi desenvovido de forma integral, sem utilização de templates, e foi realizado entre [30/12/2022 e 05/01/2023](https://github.com/leonardofmed/i-angular-php-test-front/commits?author=leonardofmed&since=2022-12-30&until=2023-01-06), levando cerca de 40h para conclusão da primeira versão com as principais funcionalidades, considerando front e back.
+Esse projeto foi desenvovido de forma integral, sem utilização de templates, e foi realizado entre [30/12/2022 e 05/01/2023](https://github.com/leonardofmed/i-angular-php-test-front/commits?author=leonardofmed&since=2022-12-30&until=2023-01-06), levando cerca de 40h para conclusão da primeira versão com as principais funcionalidades, considerando front e back. Para informações sobre como utilizar a API, acessar o [repositório da API](https://github.com/leonardofmed/i-angular-php-test-back).
 
 ### Formato PWA
 O formato PWA (Web-based Progressive Web App) foi escolhido por possibilitar a demonstração da versatilidade dos frameworks utilizados. É possível criar sistema pensados exclusivamente para navagedores no formato widescreen, telas de celulares ou ambos.
