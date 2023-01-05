@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { ClientePage } from 'src/app/modals/cliente/cliente.page';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
 	selector: 'app-clientes',
@@ -8,64 +9,40 @@ import { ClientePage } from 'src/app/modals/cliente/cliente.page';
 	styleUrls: ['./clientes.page.scss'],
 })
 export class ClientesPage implements OnInit {
-	public clientes: Cliente[] = [
-		{
-			uid: 'da89s76da',
-			nome: 'Teste1',
-			cpf: '123456789',
-			endereco: {
-				cep: '123456789',
-				logradouro: '55',
-                bairro: 'bairro x',
-				complemento: 'complemento x',
-				cidade: 'cidade x',
-				numero: 132
-			},
-			email: 'teste@teste.com',
-			nascimento: '10111995',
-			image: 'https://images.generated.photos/SsG9InJf3rhzlESGbhhSaIGD9nijXsDCXMsagxY5X6Q/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzA5MjM5LmpwZw.jpg'
-		},
-		{
-			uid: 'a9sf809ad',
-			nome: 'Teste2',
-			cpf: '123456789',
-			endereco: {
-				cep: '123456789',
-				logradouro: '55',
-                bairro: 'bairro x',
-				complemento: 'complemento x',
-				cidade: 'cidade 2',
-				numero: 156
-			},
-			email: 'teste@teste.com',
-			nascimento: '10111995',
-			image: 'https://images.generated.photos/tZdcuglcnvMqOCjvvB-OinNfLWafceg2JTRKdnUOin4/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MjUwOTY1LmpwZw.jpg'
-		}
-	]
+	public clientes: Cliente[] = []
 
 	constructor(
 		private modalController: ModalController,
-		private navController: NavController
+		private navController: NavController,
+		private api: ApiService
 	) { }
 
 	ngOnInit() {
+		this.getClients();
 	}
+
+	//ionViewWillEnter() {}
 
 	public openEditModal(cliente: Cliente): Promise<void> {
 		return this.modalController.create({
 			component: ClientePage,
 			componentProps: {
-                cliente: cliente
+				cliente: cliente
 			}
 
-		}).then(modal => modal.present());
+		}).then(modal => {			
+			modal.onDidDismiss().then(data => {
+				if (data.data === 'reload') this.getClients();
+			});
+			modal.present()
+		});
 	}
 
 	public add(): Promise<void> {
 		return this.modalController.create({
 			component: ClientePage,
 			componentProps: {
-                cliente: null
+				cliente: null
 			}
 
 		}).then(modal => modal.present());
@@ -73,6 +50,13 @@ export class ClientesPage implements OnInit {
 
 	public goBack(): void {
 		return this.navController.back();
+	}
+
+	private getClients() {
+		return this.api.getClients().subscribe((clients: Cliente[]) => {
+			console.log("clients", clients); // TODO REMOVE
+			this.clientes = clients;
+		});
 	}
 
 }

@@ -53,4 +53,14 @@ export class GeneralService {
 
 		return day + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
 	}
+
+	/**
+	 * Sum all values of a property from an array of objects
+	 * @returns The sum of all properties
+	 */
+	public sumOfProps(array: any[], prop: string): number {
+		return array.reduce((a, b) => {
+			return Number(a) + Number(b[prop]);
+		}, 0);
+	}
 }

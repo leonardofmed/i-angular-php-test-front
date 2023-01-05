@@ -1,0 +1,15 @@
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone America/Sao_Paulo
+
+# Enable default disabled methods in current used host (infinityfree)
+<Limit GET POST PUT DELETE OPTIONS>
+  Allow from all
+</Limit>
+
+RewriteEngine On
+
+# Handle Front Controller...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [L]
