@@ -1,7 +1,7 @@
 # i-angular-php-test-front
 - Projeto em Ionic + Angular para o teste técnico da WK Technology
 - [Repositório da API](https://github.com/leonardofmed/i-angular-php-test-back)
-- [**DEMO FUNCIONAL ONLINE**](wktest.epizy.com)
+- [**DEMO FUNCIONAL ONLINE**](http://wktest.epizy.com)
 
 ## Build
 - Web: `ionic build`
