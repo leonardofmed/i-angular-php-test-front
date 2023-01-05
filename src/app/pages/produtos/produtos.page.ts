@@ -6,6 +6,7 @@ import { Venda } from '../vendas/vendas.page';
 import { GeneralService } from 'src/app/services/general.service';
 import { Cliente } from '../clientes/clientes.page';
 import { UiService } from 'src/app/services/ui.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
 	selector: 'app-produtos',
@@ -20,7 +21,8 @@ export class ProdutosPage implements OnInit {
 		private navController: NavController,
 		private api: ApiService,
 		private general: GeneralService,
-		private ui: UiService
+		private ui: UiService,
+		private storage: StorageService
 	) { }
 
 	ngOnInit() {
@@ -66,7 +68,7 @@ export class ProdutosPage implements OnInit {
 	public buy(product: Produto) {
 		// Get "logged" user (here I'm just using a presetted one)
 		let mockUser: Cliente = {
-			uid: 'mock_123',
+			uid: 'mock_user_123',
 			nome: 'Mock Logged User',
 			cpf: '123456789',
 			endereco: {
@@ -87,7 +89,7 @@ export class ProdutosPage implements OnInit {
 			data: this.general.getDateAsString(),
 			user: mockUser,
 			products: [product],
-			total: "product"
+			total: ""
 		}
 		// Calculate the total amount from products in sale
 		newSale.total = this.general.sumOfProps(newSale.products, "valor").toString();
@@ -102,10 +104,14 @@ export class ProdutosPage implements OnInit {
 		return this.navController.back();
 	}
 
+	// TODO ADD TO A SERVICE (USE IN OTHER PAGES)
 	public getProducts() {
 		return this.api.getProducts().subscribe((products: Produto[]) => {
 			console.log("products", products); // TODO REMOVE
 			this.products = products;
+
+			// Store products in storage
+			this.storage.overwriteValues(this.storage.PRODUCTS_KEY, products);
 		});
 	}
 }

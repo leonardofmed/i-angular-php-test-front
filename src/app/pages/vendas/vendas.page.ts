@@ -3,6 +3,7 @@ import { Produto } from '../produtos/produtos.page';
 import { Cliente } from '../clientes/clientes.page';
 import { GeneralService } from 'src/app/services/general.service';
 import { ApiService } from 'src/app/services/api.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-vendas',
@@ -14,7 +15,8 @@ export class VendasPage implements OnInit {
 
 	constructor(
 		private general: GeneralService,
-		private api: ApiService
+		private api: ApiService,
+		private navController: NavController
 	) { }
 
 	ngOnInit() {
@@ -31,6 +33,10 @@ export class VendasPage implements OnInit {
 			this.vendas = sales;
 		});
 	}
+	
+	public goBack(): void {
+		return this.navController.back();
+	}
 }
 
 /**
@@ -40,7 +46,7 @@ export class VendasPage implements OnInit {
 export interface Venda {
 	uid: string
 	data: string
-	user: Cliente // Here we use 
-	products: Produto[] // TODO this should be an array of products UIDs
+	user: Cliente
+	products: Produto[]
 	total: string
 }

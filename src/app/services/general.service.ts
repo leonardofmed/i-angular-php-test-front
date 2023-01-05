@@ -60,7 +60,7 @@ export class GeneralService {
 	 */
 	public sumOfProps(array: any[], prop: string): number {
 		return array.reduce((a, b) => {
-			return a + b[prop];
+			return Number(a) + Number(b[prop]);
 		}, 0);
 	}
 }

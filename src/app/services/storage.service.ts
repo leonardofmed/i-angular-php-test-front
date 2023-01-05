@@ -5,11 +5,7 @@ import { Storage } from '@ionic/storage-angular';
 	providedIn: 'root'
 })
 export class StorageService {
-	public PAGARME_CUSTOMER_ID: string = 'pagarme_customer_id';
-	public GAYA_CUSTOMER: string = 'gaya_customer';
-	public ADDRESSES: string = "addresses";
-	public CART: string = "Cart";
-	public USER_UID: string = "userId";
+	public PRODUCTS_KEY: string = 'products';
 
 	constructor(
 		private storage: Storage
